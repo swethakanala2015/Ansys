@@ -19,9 +19,6 @@ For internal resources, without public IP mapping.
 #### Internet Gateway:
 Provides internet access to public subnets.
 
-#### NAT Gateway:
-Optional (enabled by default) for private subnet instances to access the internet.
-
 #### Default Security Group:
 Configurable rules to allow:
 SSH access (port 22).

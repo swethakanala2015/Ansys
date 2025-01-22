@@ -1,3 +1,7 @@
+locals {
+  name = "${var.project_name}-${var.environment}-${var.sg_name}"
+}
+
 resource "aws_security_group" "default" {
   vpc_id = aws_vpc.main.id
 

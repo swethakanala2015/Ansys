@@ -33,3 +33,9 @@ variable "azs" {
   type        = list(string)
   default     = ["us-east-1a", "us-east-1b", "us-east-1c"]
 }
+
+variable "enable_nat" {
+  description = "Enable or disable the creation of a NAT gateway"
+  type        = bool
+  default     = true
+}

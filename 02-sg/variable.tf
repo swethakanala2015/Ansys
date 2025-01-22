@@ -46,3 +46,9 @@ variable "allow_all_egress" {
   type        = bool
   default     = true
 }
+
+variable "egress_cidr_blocks" {
+  description = "CIDR blocks allowed for outbound traffic"
+  type        = list(string)
+  default     = ["0.0.0.0/0"]
+}

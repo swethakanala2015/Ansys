@@ -12,3 +12,8 @@ output "private_subnet_ids" {
   description = "The IDs of the private subnets created within the VPC"
   value       = aws_subnet.private[*].id
 }
+
+output "internet_gateway_id" {
+  description = "The ID of the Internet Gateway attached to the VPC"
+  value       = aws_internet_gateway.gw.id
+}

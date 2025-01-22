@@ -9,3 +9,9 @@ variable "environment" {
   type        = string
   default     = "dev"
 }
+
+variable "sg_name" {
+  description = "The name for the security group"
+  type        = string
+  default     = "default-sg"
+}

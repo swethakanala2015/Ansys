@@ -21,3 +21,9 @@ variable "allow_ssh" {
   type        = bool
   default     = true
 }
+
+variable "ssh_cidr_blocks" {
+  description = "CIDR blocks allowed for SSH traffic"
+  type        = list(string)
+  default     = ["0.0.0.0/0"]
+}

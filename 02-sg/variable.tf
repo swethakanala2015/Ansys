@@ -52,3 +52,13 @@ variable "egress_cidr_blocks" {
   type        = list(string)
   default     = ["0.0.0.0/0"]
 }
+
+variable "common_tags" {
+  description = "Common tags to apply to all resources"
+  type        = map(string)
+  default     = {
+    Owner       = "team"
+    Environment = "dev"
+    Terraform   = "true"
+  }
+}

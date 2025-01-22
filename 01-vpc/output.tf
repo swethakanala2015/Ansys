@@ -22,3 +22,8 @@ output "nat_gateway_id" {
   description = "The ID of the NAT Gateway, if created"
   value       = var.enable_nat ? aws_nat_gateway.example[0].id : null
 }
+
+output "route_table_public_id" {
+  description = "The ID of the route table for public subnets"
+  value       = aws_route_table.public.id
+}

@@ -15,3 +15,9 @@ variable "sg_name" {
   type        = string
   default     = "default-sg"
 }
+
+variable "allow_ssh" {
+  description = "Allow SSH (port 22) traffic (true/false)"
+  type        = bool
+  default     = true
+}

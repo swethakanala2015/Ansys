@@ -27,3 +27,9 @@ variable "ssh_cidr_blocks" {
   type        = list(string)
   default     = ["0.0.0.0/0"]
 }
+
+variable "allow_http" {
+  description = "Allow HTTP (port 80) traffic (true/false)"
+  type        = bool
+  default     = true
+}

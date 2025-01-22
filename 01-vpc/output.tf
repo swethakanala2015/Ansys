@@ -27,3 +27,8 @@ output "route_table_public_id" {
   description = "The ID of the route table for public subnets"
   value       = aws_route_table.public.id
 }
+
+output "route_table_private_id" {
+  description = "The ID of the route table for private subnets"
+  value       = aws_route_table.private.id
+}

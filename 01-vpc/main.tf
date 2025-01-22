@@ -28,3 +28,19 @@ resource "aws_internet_gateway" "gw" {
   )
 
 }
+
+### Public Subnets
+resource "aws_subnet" "public" {
+  count                   = length(var.public_subnet_cidr)
+  vpc_id                  = aws_vpc.main.id
+  cidr_block              = var.public_subnet_cidr[count.index]
+  availability_zone       = var.azs[count.index]
+  map_public_ip_on_launch = true
+
+  tags = merge(
+    {
+      Name = "${local.name}-public-${split("-", var.azs[count.index])[2]}"
+    },
+    var.common_tags
+  )
+}

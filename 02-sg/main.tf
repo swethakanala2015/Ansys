@@ -12,3 +12,15 @@ resource "aws_security_group" "default" {
       cidr_blocks = [ingress.value]
     }
   }
+
+  # Conditional Ingress Rules for HTTP
+  dynamic "ingress" {
+    for_each = var.allow_http ? toset(var.http_cidr_blocks) : []
+    content {
+      description = "Allow HTTP traffic"
+      from_port   = 80
+      to_port     = 80
+      protocol    = "tcp"
+      cidr_blocks = [ingress.value]
+    }
+  }

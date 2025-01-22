@@ -17,3 +17,8 @@ output "internet_gateway_id" {
   description = "The ID of the Internet Gateway attached to the VPC"
   value       = aws_internet_gateway.gw.id
 }
+
+output "nat_gateway_id" {
+  description = "The ID of the NAT Gateway, if created"
+  value       = var.enable_nat ? aws_nat_gateway.example[0].id : null
+}

@@ -24,3 +24,11 @@ resource "aws_security_group" "default" {
       cidr_blocks = [ingress.value]
     }
   }
+
+  # Conditional Egress Rules
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = var.allow_all_egress ? var.egress_cidr_blocks : []
+  }

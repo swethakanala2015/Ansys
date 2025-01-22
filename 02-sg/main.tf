@@ -32,3 +32,11 @@ resource "aws_security_group" "default" {
     protocol    = "-1"
     cidr_blocks = var.allow_all_egress ? var.egress_cidr_blocks : []
   }
+
+   tags = merge(
+    {
+      Name = "${var.environment}-${var.project_name}-default-sg"
+    },
+    var.common_tags
+  )
+}

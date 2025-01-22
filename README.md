@@ -58,11 +58,11 @@ Security group ID.
 Internet Gateway and NAT Gateway IDs.
 
 ####How to Use
-Initialize Terraform: terraform init
-Validate Configuration: terraform validate
-Plan: Review the changes Terraform will make: terraform plan
-Apply: Deploy the resources: terraform apply
-View Outputs: Get key resource IDs: terraform output
+Initialize Terraform: terraform init, 
+Validate Configuration: terraform validate, 
+Plan: Review the changes Terraform will make: terraform plan, 
+Apply: Deploy the resources: terraform apply, 
+View Outputs: Get key resource IDs: terraform output,
 
 #### Key Features
 Flexibility: Variables let you adjust VPC size, subnet configuration, and access rules.

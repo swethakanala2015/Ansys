@@ -39,3 +39,13 @@ variable "enable_nat" {
   type        = bool
   default     = true
 }
+
+variable "common_tags" {
+  description = "Common tags to apply to all resources"
+  type        = map(string)
+  default     = {
+    Owner       = "team"
+    Environment = "dev"
+    Terraform   = "true"
+  }
+}

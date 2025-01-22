@@ -58,3 +58,14 @@ resource "aws_subnet" "private" {
     var.common_tags
   )
 }
+
+### Route Tables
+resource "aws_route_table" "public" {
+  vpc_id = aws_vpc.main.id
+  tags = merge(
+    {
+      Name = "${local.name}-public"
+    },
+    var.common_tags
+  )
+}

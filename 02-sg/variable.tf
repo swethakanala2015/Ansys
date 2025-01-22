@@ -33,3 +33,9 @@ variable "allow_http" {
   type        = bool
   default     = true
 }
+
+variable "http_cidr_blocks" {
+  description = "CIDR blocks allowed for HTTP traffic"
+  type        = list(string)
+  default     = ["0.0.0.0/0"]
+}

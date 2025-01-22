@@ -79,3 +79,42 @@ resource "aws_route_table" "private" {
     var.common_tags
   )
 }
+
+### Route Table Associations
+resource "aws_route_table_association" "public" {
+  count          = length(aws_subnet.public)
+  subnet_id      = aws_subnet.public[count.index].id
+  route_table_id = aws_route_table.public.id
+}
+
+resource "aws_route_table_association" "private" {
+  count          = length(aws_subnet.public)
+  subnet_id      = aws_subnet.private[count.index].id
+  route_table_id = aws_route_table.private.id
+}
+
+### NAT Gateway
+resource "aws_eip" "eip" {
+  count  = var.enable_nat ? 1 : 0
+  domain = "vpc"
+  tags = merge(
+    {
+      Name = local.name
+    },
+    var.common_tags
+  )
+}
+
+resource "aws_nat_gateway" "example" {
+  count         = var.enable_nat ? 1 : 0
+  allocation_id = aws_eip.eip[count.index].id
+  subnet_id     = aws_subnet.public[0].id
+
+  tags = merge(
+    {
+      Name = local.name
+    },
+    var.common_tags
+  )
+  depends_on = [aws_internet_gateway.gw]
+}

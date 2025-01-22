@@ -3,6 +3,11 @@ locals {
   name = "${var.environment}-${var.project_name}"
 }
 
+### Data Block
+data "aws_vpc" "selected" {
+  default = true
+}
+
 ### VPC
 resource "aws_vpc" "main" {
   cidr_block           = var.vpc_cidr

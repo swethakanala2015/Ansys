@@ -5,7 +5,7 @@ locals {
 resource "aws_security_group" "default" {
   vpc_id = aws_vpc.main.id
 
-  # Conditional Ingress Rules for SSH
+
   dynamic "ingress" {
     for_each = var.allow_ssh ? toset(var.ssh_cidr_blocks) : []
     content {
@@ -17,7 +17,7 @@ resource "aws_security_group" "default" {
     }
   }
 
-  # Conditional Ingress Rules for HTTP
+
   dynamic "ingress" {
     for_each = var.allow_http ? toset(var.http_cidr_blocks) : []
     content {
@@ -29,7 +29,7 @@ resource "aws_security_group" "default" {
     }
   }
 
-  # Conditional Egress Rules
+
   egress {
     from_port   = 0
     to_port     = 0

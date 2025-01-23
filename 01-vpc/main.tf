@@ -1,14 +1,8 @@
-### Locals
+
 locals {
   name = "${var.environment}-${var.project_name}"
 }
 
-### Data Block
-data "aws_vpc" "selected" {
-  default = true
-}
-
-### VPC
 resource "aws_vpc" "main" {
   cidr_block           = var.vpc_cidr
   instance_tenancy     = "default"
@@ -22,7 +16,6 @@ resource "aws_vpc" "main" {
   )
 }
 
-### IGW
 resource "aws_internet_gateway" "gw" {
   vpc_id = aws_vpc.main.id
   tags = merge(
@@ -34,7 +27,6 @@ resource "aws_internet_gateway" "gw" {
 
 }
 
-### Public Subnets
 resource "aws_subnet" "public" {
   count                   = length(var.public_subnet_cidr)
   vpc_id                  = aws_vpc.main.id
@@ -50,7 +42,6 @@ resource "aws_subnet" "public" {
   )
 }
 
-### Private Subnets
 resource "aws_subnet" "private" {
   count             = length(var.private_subnet_cidr)
   vpc_id            = aws_vpc.main.id
@@ -64,7 +55,6 @@ resource "aws_subnet" "private" {
   )
 }
 
-### Route Tables
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.main.id
   tags = merge(
@@ -85,7 +75,6 @@ resource "aws_route_table" "private" {
   )
 }
 
-### Route Table Associations
 resource "aws_route_table_association" "public" {
   count          = length(aws_subnet.public)
   subnet_id      = aws_subnet.public[count.index].id
@@ -124,7 +113,6 @@ resource "aws_nat_gateway" "example" {
   depends_on = [aws_internet_gateway.gw]
 }
 
-### Route
 resource "aws_route" "public" {
   route_table_id         = aws_route_table.public.id
   destination_cidr_block = "0.0.0.0/0"
